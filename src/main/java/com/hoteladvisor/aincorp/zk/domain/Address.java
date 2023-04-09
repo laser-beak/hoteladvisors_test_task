@@ -5,6 +5,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "addresses")
 public class Address {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -23,12 +24,6 @@ public class Address {
 
     @Column(name = "flat")
     private String flat;
-
-    @OneToOne(mappedBy = "address")
-    private Company company;
-
-    @OneToOne(mappedBy = "address")
-    private FilialBranch filialBranch;
 
     public Address() {
     }
@@ -87,21 +82,5 @@ public class Address {
 
     public void setFlat(String flat) {
         this.flat = flat;
-    }
-
-    public Company getCompany() {
-        return company;
-    }
-
-    public void setCompany(Company company) {
-        this.company = company;
-    }
-
-    public FilialBranch getFilialBranch() {
-        return filialBranch;
-    }
-
-    public void setFilialBranch(FilialBranch filialBranch) {
-        this.filialBranch = filialBranch;
     }
 }

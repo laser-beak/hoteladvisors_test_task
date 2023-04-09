@@ -6,8 +6,9 @@
     <persistence-unit name="default" transaction-type="JTA">
 
         <class>com.hoteladvisor.aincorp.zk.domain.Address</class>
-        <!--<class>com.hoteladvisor.aincorp.zk.domain.FilialBranch</class>
-        <class>com.hoteladvisor.aincorp.zk.domain.Company</class>-->
+        <class>com.hoteladvisor.aincorp.zk.domain.FilialBranch</class>
+        <class>com.hoteladvisor.aincorp.zk.domain.Company</class>
+
         <properties>
             <property name="hibernate.connection.url" value="jdbc:mariadb://localhost:3306/hoteladvisors"/>
             <property name="hibernate.connection.driver_class" value="org.mariadb.jdbc.Driver"/>

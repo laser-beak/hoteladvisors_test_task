@@ -6,6 +6,7 @@ import org.hibernate.HibernateException;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import java.util.List;
 
 public class AddressDao {

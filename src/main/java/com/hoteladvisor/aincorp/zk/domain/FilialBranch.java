@@ -5,6 +5,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "filial_branches")
 public class FilialBranch {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -14,15 +15,18 @@ public class FilialBranch {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id", referencedColumnName = "id")
-    @Column(name = "filial_branch_address")
-    private Address filialBranchAddress;
+    private Address address;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Company company;
 
     public FilialBranch() {
     }
 
-    public FilialBranch(String branchName, Address filialBranchAddress) {
+    public FilialBranch(String branchName, Address address, Company company) {
         this.branchName = branchName;
-        this.filialBranchAddress = filialBranchAddress;
+        this.address = address;
+        this.company = company;
     }
 
     public Integer getId() {
@@ -41,12 +45,20 @@ public class FilialBranch {
         this.branchName = branchName;
     }
 
-    public Address getFilialBranchAddress() {
-        return filialBranchAddress;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setFilialBranchAddress(Address filialBranchAddress) {
-        this.filialBranchAddress = filialBranchAddress;
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
     }
 }
 

@@ -6,6 +6,7 @@ import java.util.List;
 @Entity
 @Table(name = "companies")
 public class Company {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -19,20 +20,23 @@ public class Company {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id", referencedColumnName = "id")
-    @Column(name = "company_address")
-    private Address companyAddress;
+    private Address address;
 
-    @OneToMany(mappedBy = "filial_branch")
-    private List<FilialBranch> companyBranches;
+    @OneToMany(
+            mappedBy = "company",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<FilialBranch> filialBranches;
 
     public Company() {
     }
 
-    public Company(String companyName, LegalFormType legalFormType, Address companyAddress, List<FilialBranch> companyBranches) {
+    public Company(String companyName, LegalFormType legalFormType, Address address, List<FilialBranch> filialBranches) {
         this.companyName = companyName;
         this.legalFormType = legalFormType;
-        this.companyAddress = companyAddress;
-        this.companyBranches = companyBranches;
+        this.address = address;
+        this.filialBranches = filialBranches;
     }
 
     public Integer getId() {
@@ -59,19 +63,19 @@ public class Company {
         this.legalFormType = legalFormType;
     }
 
-    public Address getCompanyAddress() {
-        return companyAddress;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setCompanyAddress(Address companyAddress) {
-        this.companyAddress = companyAddress;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
-    public List<FilialBranch> getCompanyBranches() {
-        return companyBranches;
+    public List<FilialBranch> getFilialBranches() {
+        return filialBranches;
     }
 
-    public void setCompanyBranches(List<FilialBranch> companyBranches) {
-        this.companyBranches = companyBranches;
+    public void setFilialBranches(List<FilialBranch> filialBranches) {
+        this.filialBranches = filialBranches;
     }
 }
