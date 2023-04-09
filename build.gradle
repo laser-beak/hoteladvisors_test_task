@@ -2,46 +2,75 @@ apply plugin: 'war'
 apply plugin: 'ear'
 apply from: 'gretty.plugin'
 
+buildscript {
+    repositories {
+        maven {
+            url uri('https://oss.sonatype.org/content/repositories/releases/')
+        }
+        mavenCentral()
+    }
+    dependencies {
+        classpath group: 'net.saliman', name: 'gradle-liquibase-plugin', version: '1.0.0'
+    }
+}
+apply plugin: 'liquibase'
 
 
 // In this section you declare where to find the dependencies of your project
 repositories {
-	maven { url "https://mavensync.zkoss.org/maven2" }
-	maven { url "https://mavensync.zkoss.org/eval" }
-	maven { url "https://jaspersoft.jfrog.io/jaspersoft/third-party-ce-artifacts/" } //for jasper reports
-	mavenCentral()
+    maven { url "https://mavensync.zkoss.org/maven2" }
+    maven { url "https://mavensync.zkoss.org/eval" }
+    maven { url "https://jaspersoft.jfrog.io/jaspersoft/third-party-ce-artifacts/" } //for jasper reports
+    mavenCentral()
 }
 
 sourceCompatibility = '11'
 targetCompatibility = '11'
 
 sourceSets {
-	jettyRunner {
-		runtimeClasspath += sourceSets.main.runtimeClasspath
-	}
+    jettyRunner {
+        runtimeClasspath += sourceSets.main.runtimeClasspath
+    }
 }
 
 // In this section you declare the dependencies for your production and test code
 dependencies {
-	implementation "org.zkoss.zk:zk:${zkVersion}"
-	implementation "org.zkoss.zk:zkbind:${zkVersion}"
-	implementation "org.zkoss.zk:zkex:${zkVersion}"    /*ZK PE*/
-	implementation "org.zkoss.zk:zkmax:${zkVersion}"   /*ZK EE*/
-	implementation "org.zkoss.zk:zuti:${zkVersion}"    /*optional enable for shadow elements support */
+    implementation "org.zkoss.zk:zk:${zkVersion}"
+    implementation "org.zkoss.zk:zkbind:${zkVersion}"
+    implementation "org.zkoss.zk:zkex:${zkVersion}"    /*ZK PE*/
+    implementation "org.zkoss.zk:zkmax:${zkVersion}"   /*ZK EE*/
+    implementation "org.zkoss.zk:zuti:${zkVersion}"    /*optional enable for shadow elements support */
 
-	implementation "commons-io:commons-io:${commonsIoVersion}"
-	runtimeOnly "org.slf4j:slf4j-jdk14:1.7.28"
+    implementation "commons-io:commons-io:${commonsIoVersion}"
+    runtimeOnly "org.slf4j:slf4j-jdk14:1.7.28"
 
-	testImplementation "org.zkoss.zats:zats-mimic-ext96:${zatsVersion}"
-	testImplementation "junit:junit:${junitVersion}"
+    testImplementation "org.zkoss.zats:zats-mimic-ext96:${zatsVersion}"
+    testImplementation "junit:junit:${junitVersion}"
 
-	jettyRunnerRuntimeOnly "org.eclipse.jetty:jetty-runner:${jettyVersion}"
-	jettyRunnerRuntimeOnly "org.eclipse.jetty.websocket:websocket-javax-server:${jettyVersion}"
+    jettyRunnerRuntimeOnly "org.eclipse.jetty:jetty-runner:${jettyVersion}"
+    jettyRunnerRuntimeOnly "org.eclipse.jetty.websocket:websocket-javax-server:${jettyVersion}"
+
+    implementation "org.hibernate:hibernate-core:${hibernateVersion}"
+    implementation "org.mariadb.jdbc:mariadb-java-client:${mariadbVersion}"
+    implementation "org.liquibase:liquibase-core:${liquibaseVersion}"
+}
+
+def changeLog = "$projectDir/src/main/resources/db.changelog/changelog.xml"
+
+liquibase {
+    activities {
+        main {
+            changeLogFile changeLog
+            url "jdbc:mariadb://localhost:3306/hoteladvisors"
+            username "admin_user"
+            password "1234"
+        }
+    }
 }
 
 //launch Jetty using jetty-runner
 task startJettyRunner(type: JavaExec) {
-	classpath = sourceSets.jettyRunner.runtimeClasspath
-	mainClass = 'org.eclipse.jetty.runner.Runner'
-	args '--path', "/${rootProject.name}", 'jetty-dev-context.xml'
+    classpath = sourceSets.jettyRunner.runtimeClasspath
+    mainClass = 'org.eclipse.jetty.runner.Runner'
+    args '--path', "/${rootProject.name}", 'jetty-dev-context.xml'
 }

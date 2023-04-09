@@ -1,11 +1,41 @@
-<?import com.hoteladvisor.aincorp.zk.MyViewModel?>
 <zk>
-	<div viewModel="@id('vm') @init('MyViewModel')" validationMessages="@id('vmsgs')">
-		Your Name: <textbox id="name" value="@bind(vm.name)"
-			onOK="@command(MyViewModel.SUBMIT_COMMAND)"/>
-		<button id="submit" label="submit" 
-			onClick='@command(MyViewModel.SUBMIT_COMMAND)'/>
-		<separator/>
-		<label id="response" value="@load(vm.response)"/>
-	</div>
+    <window title="Список Адресов" width="600px" border="normal"
+            apply="com.hoteladvisor.aincorp.zk.controller.AddressController">
+        <hbox>
+            Keyword:
+            <textbox id="keywordBox" placeholder="Что ищем?"/>
+            <button id="searchButton" label="Искать"/>
+        </hbox>
+        <listbox emptyMessage="Нет Адресов для отображения" id="addressListBox">
+            <listhead>
+                <listheader label="Номер"/>
+                <listheader label="Индекс"/>
+                <listheader label="Город"/>
+                <listheader label="Улица"/>
+                <listheader label="Дом"/>
+                <listheader label="Квартира"/>
+            </listhead>
+            <template name="model">
+                <listitem>
+                    <listcell label="${each.id}"/>
+                    <listcell label="${each.index}"/>
+                    <listcell label="${each.city}"/>
+                    <listcell label="${each.street}"/>
+                    <listcell label="${each.house}"/>
+                    <listcell label="${each.flat}"/>
+                </listitem>
+            </template>
+        </listbox>
+        <hbox style="margin-top:20px">
+            <vbox>
+                <label id="idLabel"/>
+                <label id="indexLabel"/>
+                <label id="cityLabel"/>
+                <label id="streetLabel"/>
+                <label id="houseLabel"/>
+                <label id="flatLabel"/>
+                <label id="descriptionLabel"/>
+            </vbox>
+        </hbox>
+    </window>
 </zk>
