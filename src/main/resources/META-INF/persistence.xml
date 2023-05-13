@@ -10,10 +10,11 @@
         <class>com.hoteladvisor.aincorp.zk.domain.Company</class>
 
         <properties>
-            <property name="hibernate.connection.url" value="jdbc:mariadb://localhost:3306/hoteladvisors"/>
-            <property name="hibernate.connection.driver_class" value="org.mariadb.jdbc.Driver"/>
-            <property name="hibernate.connection.user" value="admin_user"/>
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/hoteladvisors"/>
+            <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="hibernate.connection.user" value="ha_user"/>
             <property name="hibernate.connection.password" value="1234"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect"/>
             <property name="hibernate.show_sql" value="true"/>
         </properties>
     </persistence-unit>
