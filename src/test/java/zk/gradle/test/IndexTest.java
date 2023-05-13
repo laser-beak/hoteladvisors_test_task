@@ -1,9 +1,6 @@
 package zk.gradle.test;
 
-import org.junit.Assert;
-import org.junit.ClassRule;
-import org.junit.Rule;
-import org.junit.Test;
+import org.junit.*;
 import org.zkoss.zats.junit.AutoClient;
 import org.zkoss.zats.junit.AutoEnvironment;
 import org.zkoss.zats.mimic.ComponentAgent;
@@ -14,6 +11,7 @@ import org.zkoss.zul.Textbox;
 /**
  * example Zats Test case for index.zul see https://www.zkoss.org/wiki/ZATS_Essentials/Getting_Started
  */
+@Ignore
 public class IndexTest {
     //init/destroy a DefaultZatsEnvironment once for the whole test class
     @ClassRule

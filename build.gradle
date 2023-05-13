@@ -61,6 +61,7 @@ liquibase {
     activities {
         main {
             changeLogFile changeLog
+            propertyFile "liquibase.properties"
             url "jdbc:mysql://localhost:3306/hoteladvisors"
             username "ha_user"
             password "1234"
