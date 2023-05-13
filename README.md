@@ -1,6 +1,6 @@
 # # Hoteladvisors-test-task
 
-Тестовое задание для компании Hoteladvisors, web проект с применение фрейворка zkoss mvc, база данных mariadb, орм
+Тестовое задание для компании Hoteladvisors, web проект с применение framework - zkoss mvc, база данных mysql, orm
 hibernate, docker compose, сервер приложений WildFly.
 
 ## Useful Build Commands
