@@ -2,7 +2,7 @@
     <window title="Список Адресов" width="600px" border="normal"
             apply="com.hoteladvisor.aincorp.zk.controller.AddressController">
         <hbox>
-            Keyword:
+            Ключевое слово:
             <textbox id="keywordBox" placeholder="Что ищем?"/>
             <button id="searchButton" label="Искать"/>
         </hbox>
