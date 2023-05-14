@@ -11,7 +11,7 @@ buildscript {
 }
 
 plugins {
-    id 'org.liquibase.gradle' version '2.0.1' // https://github.com/liquibase/liquibase-gradle-plugin
+    id 'org.liquibase.gradle' version '2.0.2' // https://github.com/liquibase/liquibase-gradle-plugin
 }
 
 apply plugin: 'war'
@@ -60,9 +60,9 @@ dependencies {
 liquibase {
     activities {
         main {
-            changeLogFile "$projectDir/src/main/liquibase/master.xml"
+            changeLogFile "src/main/liquibase/master.xml"
             driver "com.mysql.cj.jdbc.Driver"
-            url "mysql://localhost:3306/hoteladvisors"
+            url "jdbc:mysql://localhost:3306/hoteladvisors"
             username "ha_user"
             password "1234"
         }
