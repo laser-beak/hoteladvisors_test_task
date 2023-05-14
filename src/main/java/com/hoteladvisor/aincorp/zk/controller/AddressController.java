@@ -70,7 +70,7 @@ public class AddressController extends SelectorComposer<Component> {
     }
 
     @Listen("onClick = #searchButton")
-    public void searchCars() {
+    public void searchAddresses() {
         log.info("args @searchBox is {}", keywordBox.getValue());
 
         List<Address> addressList = service.findAll();
