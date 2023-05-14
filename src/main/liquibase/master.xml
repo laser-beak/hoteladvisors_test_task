@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <include file="hoteladvisors/ch_1684092635561-1_create_addresses_table.xml" relativeToChangelogFile="true"/>
+    <include file="hoteladvisors/ch_1684092899364-2_create_companies_table.xml" relativeToChangelogFile="true"/>
+    <include file="hoteladvisors/ch_1684093279331-3_create_filial_branches_table.xml" relativeToChangelogFile="true"/>
+    <include file="hoteladvisors/ch_1684093486454-4_create_companies_address_fk.xml" relativeToChangelogFile="true"/>
+    <include file="hoteladvisors/ch_1684093982001-5_create_filial_branches_addresses_fk.xml" relativeToChangelogFile="true"/>
+    <include file="hoteladvisors/ch_1684094259305-6_create_filial_branches_companies_fk.xml" relativeToChangelogFile="true"/>
+
+</databaseChangeLog>
