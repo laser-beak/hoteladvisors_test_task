@@ -23,7 +23,7 @@ public class AddressDao {
     }
 
     /**
-     * rollback is handled in filter.
+     * save address
      *
      * @param newAddress
      * @return
