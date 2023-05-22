@@ -1,21 +1,18 @@
-package com.hoteladvisor.aincorp.zk.dao;
+package com.hoteladvisor.aincorp.zk.sevices;
 
-import com.hoteladvisor.aincorp.zk.domain.Company;
+import com.hoteladvisor.aincorp.zk.models.Company;
 import org.hibernate.HibernateException;
 
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
-import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
-public class CompanyDao {
+@Stateless
+public class CompanyPersistenceBean implements CompanyPersistenceBeanRemote {
 
-    @PersistenceContext(unitName = "default")
+    @PersistenceContext(unitName = "EjbComponentDef")
     private EntityManager entityManager;
-
-    public CompanyDao() {
-        entityManager = Persistence.createEntityManagerFactory("default").createEntityManager();
-    }
 
     public Company findById(Integer id) {
         return (Company) entityManager.createQuery("FROM Company c WHERE c.id = :id")

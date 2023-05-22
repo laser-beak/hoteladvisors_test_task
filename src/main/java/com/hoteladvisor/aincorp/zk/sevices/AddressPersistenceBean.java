@@ -1,20 +1,17 @@
-package com.hoteladvisor.aincorp.zk.dao;
+package com.hoteladvisor.aincorp.zk.sevices;
 
-import com.hoteladvisor.aincorp.zk.domain.Address;
+import com.hoteladvisor.aincorp.zk.models.Address;
 import org.hibernate.HibernateException;
 
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
-import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
-public class AddressDao {
-    @PersistenceContext(unitName = "default")
+@Stateless
+public class AddressPersistenceBean implements AddressPersistenceBeanRemote {
+    @PersistenceContext(unitName = "EjbComponentDef")
     private EntityManager entityManager;
-
-    public AddressDao() {
-        entityManager = Persistence.createEntityManagerFactory("default").createEntityManager();
-    }
 
     public Address findById(Integer id) {
         return (Address) entityManager.createQuery("FROM Address ad WHERE ad.id = :id")

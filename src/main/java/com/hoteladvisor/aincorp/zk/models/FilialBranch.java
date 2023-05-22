@@ -1,4 +1,4 @@
-package com.hoteladvisor.aincorp.zk.domain;
+package com.hoteladvisor.aincorp.zk.models;
 
 import javax.persistence.*;
 

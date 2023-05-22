@@ -1,8 +1,7 @@
-package com.hoteladvisor.aincorp.zk.controller;
+package com.hoteladvisor.aincorp.zk.controllers;
 
-import com.hoteladvisor.aincorp.zk.domain.Address;
-import com.hoteladvisor.aincorp.zk.service.AddressService;
-import com.hoteladvisor.aincorp.zk.service.AddressServiceImpl;
+import com.hoteladvisor.aincorp.zk.models.Address;
+import com.hoteladvisor.aincorp.zk.sevices.AddressPersistenceBeanRemote;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.zkoss.zk.ui.Component;
@@ -14,6 +13,7 @@ import org.zkoss.zul.ListModelList;
 import org.zkoss.zul.Listbox;
 import org.zkoss.zul.Textbox;
 
+import javax.ejb.EJB;
 import java.util.List;
 
 public class AddressController extends SelectorComposer<Component> {
@@ -41,10 +41,10 @@ public class AddressController extends SelectorComposer<Component> {
     @Wire
     public Label descriptionLabel;
 
-    private AddressService service;
+    @EJB(beanName = "AddressPersistenceBeanRemote")
+    private AddressPersistenceBeanRemote service;
 
     public AddressController() {
-        service = new AddressServiceImpl();
     }
 
     @Listen("onSelect = #addressListBox")

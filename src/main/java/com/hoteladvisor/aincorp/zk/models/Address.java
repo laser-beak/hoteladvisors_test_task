@@ -1,4 +1,4 @@
-package com.hoteladvisor.aincorp.zk.domain;
+package com.hoteladvisor.aincorp.zk.models;
 
 import javax.persistence.*;
 
@@ -28,8 +28,7 @@ public class Address {
     public Address() {
     }
 
-    public Address(Integer index, String city, String street, String house, String flat) {
-        this.index = index;
+    public Address(String city, String street, String house, String flat) {
         this.city = city;
         this.street = street;
         this.house = house;

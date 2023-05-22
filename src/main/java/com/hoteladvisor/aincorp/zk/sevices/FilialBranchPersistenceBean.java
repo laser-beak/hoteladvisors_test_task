@@ -1,21 +1,18 @@
-package com.hoteladvisor.aincorp.zk.dao;
+package com.hoteladvisor.aincorp.zk.sevices;
 
-import com.hoteladvisor.aincorp.zk.domain.FilialBranch;
+import com.hoteladvisor.aincorp.zk.models.FilialBranch;
 import org.hibernate.HibernateException;
 
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
-import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
-public class FilialBranchDao {
+@Stateless
+public class FilialBranchPersistenceBean implements FilialBranchPersistenceBeanRemote {
 
-    @PersistenceContext(unitName = "default")
+    @PersistenceContext(unitName = "EjbComponentDef")
     private EntityManager entityManager;
-
-    public FilialBranchDao() {
-        entityManager = Persistence.createEntityManagerFactory("default").createEntityManager();
-    }
 
     public FilialBranch findById(Integer id) {
         return (FilialBranch) entityManager.createQuery("FROM FilialBranch bc WHERE bc.id = :id")

@@ -1,6 +1,6 @@
 <zk>
     <window title="Список Адресов" width="600px" border="normal"
-            apply="com.hoteladvisor.aincorp.zk.controller.AddressController">
+            apply="com.hoteladvisor.aincorp.zk.controllers.AddressController">
         <hbox>
             Ключевое слово:
             <textbox id="keywordBox" placeholder="Что ищем?"/>
