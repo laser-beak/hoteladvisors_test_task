@@ -1,0 +1,19 @@
+<jboss-web>
+    <context-root>hoteladvisors</context-root> <!-- context-root should be the same with war file name -->
+    <replication-config>
+        <cache-name>standard-session-cache</cache-name>
+        <replication-trigger>SET_AND_GET</replication-trigger>
+        <replication-granularity>SESSION</replication-granularity>
+        <replication-field-batch-mode>true</replication-field-batch-mode>
+        <use-jk>true</use-jk>
+        <max-unreplicated-interval>30</max-unreplicated-interval>
+        <snapshot-mode>INSTANT</snapshot-mode>
+        <snapshot-interval>1000</snapshot-interval>
+    </replication-config>
+    <max-active-sessions>5</max-active-sessions>
+    <passivation-config>
+        <use-session-passivation>true</use-session-passivation>
+        <passivation-min-idle-time>60</passivation-min-idle-time>
+        <passivation-max-idle-time>600</passivation-max-idle-time>
+    </passivation-config>
+</jboss-web>

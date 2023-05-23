@@ -198,4 +198,7 @@
         <welcome-file>index.html</welcome-file>
         <welcome-file>index.htm</welcome-file>
     </welcome-file-list>
+
+    <distributable/>
+
 </web-app>
